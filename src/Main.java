@@ -1,4 +1,4 @@
-import javax.swing.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -9,7 +9,8 @@ public class Main {
         StdDraw.setScale(0, 3);
         StdDraw.enableDoubleBuffering();
         addButtons();
-        while (true) {
+        int runs = 0;
+        while (runs < 50) {
             if (StdDraw.isMousePressed()) {
                 double x = StdDraw.mouseX();
                 double y = StdDraw.mouseY();
@@ -17,10 +18,12 @@ public class Main {
                     createTable();
                     addButtons();
                     StdDraw.show();
+                    runs++;
                 } else if (x >= 1.75 && x <= 2.75 && y >= 2.25 && y <= 2.75) {
                     generateNumber();
                     addButtons();
                     StdDraw.show();
+                    runs++;
                 }
             }
         }
@@ -58,8 +61,8 @@ public class Main {
         HashMap<Integer, Double> map = new HashMap<>();
         for (int i = 0; i < divisions; i++) {
             int count = 0;
-            for (int j = 0; j < results.size(); j++) {
-                if (results.get(j) >= i * 1.0 / divisions && results.get(j) < (i + 1) * 1.0 / divisions) {
+            for (Double result : results) {
+                if (result >= i * 1.0 / divisions && result < (i + 1) * 1.0 / divisions) {
                     count++;
                 }
             }
